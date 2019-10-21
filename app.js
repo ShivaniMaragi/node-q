@@ -11,7 +11,8 @@ var catalogRouter = require('./routes/catalog');
 
 var app = express();
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://root:123root@mycluster-vqbrm.mongodb.net/local_library';
+var dev_db_url = 'mongodb+srv://root:123root@mycluster-vqbrm.mongodb.net/local_library';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
